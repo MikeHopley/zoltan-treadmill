@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>Zoltan treadmill</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@riophae/vue-treeselect@^0.4.0/dist/vue-treeselect.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Stealth B Zoltan treadmill</h1>
+<div id="app">
+
+	<div class="controls">
+		<div class="control-item">
+			<input type="checkbox" id="manning" v-model="manning">
+			<label for="manning">Manning bonus</label>
+		</div>
+
+		<div class="control-item">
+			<input type="checkbox" id="balance" v-model="balanceMod">
+			<label for="balance">Balance mod</label>
+		</div>
+	</div>
+
+	<div id="main">	
+		
+	<div class="weapons">
+		<div class="first">
+			<div class="weapons-selection">
+				<treeselect v-model="weapon1" 
+					:options="options"
+					:disable-branch-nodes="true"
+					:max-height="400"
+					:disable-fuzzy-matching="true"
+					placeholder="Select weapon">
+				</treeselect>		
+			</div>		
+			<div v-if="weapon1" class="result">
+				<p>{{ tilesBeforeFiring1 }} tiles before firing.</p>
+				<p>{{ tilesBeforeDash1 }} tiles before sensors dash.</p>
+			</div>
+		</div>
+
+		<div class="second">
+			<div class="weapons-selection">
+				<treeselect v-model="weapon2" 
+					:options="options"
+					:disable-branch-nodes="true"
+					:max-height="400"
+					:disable-fuzzy-matching="true"
+					placeholder="Select weapon">
+				</treeselect>		
+			</div>		
+
+			<div v-if="weapon2" class="result">
+				<p>{{ tilesBeforeFiring2 }} tiles before firing.</p>
+				<p>{{ tilesBeforeDash2 }} tiles before sensors dash.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<script src="vue.js"></script>
+<script src="vue-treeselect-0.4.js"></script>
+<script src="weapons.js"></script>
+</body>
+</html>
