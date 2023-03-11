@@ -1,12 +1,11 @@
 <html>
 <head>
 	<title>Zoltan treadmill</title>
-	<link rel="stylesheet" href="tree-select.css">
+	<link rel="stylesheet" href="vue-treeselect.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<p><a href="https://mikehopley.github.io/Mikes-FTL-stuff/">Mike's FTL stuff</a> > Zoltan treadmill
 	<h1>Stealth B Zoltan treadmill</h1>
 <div id="app">
 
@@ -14,11 +13,6 @@
 		<div class="control-item">
 			<input type="checkbox" id="manning" v-model="manning">
 			<label for="manning">Manning bonus</label>
-		</div>
-
-		<div class="control-item">
-			<input type="checkbox" id="balance" v-model="balanceMod">
-			<label for="balance">Balance mod</label>
 		</div>
 	</div>
 
@@ -36,8 +30,8 @@
 				</treeselect>		
 			</div>		
 			<div v-if="weapon1" class="result">
-				<p>{{ tilesBeforeFiring1 }} tiles before firing.</p>
-				<p>{{ tilesBeforeDash1 }} tiles before sensors dash.</p>
+				<p><span>{{ tilesBeforeFiring1 }}</span> tiles before firing</p>
+				<p><span>{{ tilesBeforeDash1 }}</span> tiles before sensors dash</p>
 			</div>
 		</div>
 
@@ -53,8 +47,8 @@
 			</div>		
 
 			<div v-if="weapon2" class="result">
-				<p>{{ tilesBeforeFiring2 }} tiles before firing.</p>
-				<p>{{ tilesBeforeDash2 }} tiles before sensors dash.</p>
+				<p><span>{{ tilesBeforeFiring2 }}</span> tiles before firing.</p>
+				<p><span>{{ tilesBeforeDash2 }}</span> tiles before sensors dash.</p>
 			</div>
 		</div>
 	</div>
@@ -64,5 +58,6 @@
 <script src="vue.js"></script>
 <script src="vue-treeselect-0.4.js"></script>
 <script src="weapons.js"></script>
+
 </body>
 </html>
