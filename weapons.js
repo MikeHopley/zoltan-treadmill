@@ -1,3 +1,7 @@
+const secondsPerTile = 0.45
+
+const sensorsDashTiles = 5.4142
+
 const weaponsData = {
 	lasers: {
 		basic_laser: 10,
@@ -53,34 +57,6 @@ const weaponsData = {
 	}
 }
 
-const balanceModSource = {
-	lasers: {
-		burst_laser_3: 18,
-		charge_laser_2: 4.5,
-		chain_laser: 15
-	},
-	ion: {
-		heavy_ion: 12,
-		chain_ion: 12.5
-	},
-	beams: {
-		halberd_beam: 18,
-		fire_beam: 19
-	},
-	missiles: {
-		breach_missile: 21,
-		swarm_missile: 7
-	},			
-	bombs: {
-		ion_bomb: 21,
-		stun_bomb: 12,
-		lockdown_bomb: 13
-	},
-	crystal: {
-		crystal_burst_2: 14
-	}			
-}
-
 Vue.component('treeselect', VueTreeselect.Treeselect)
 
 var app = new Vue({
@@ -90,8 +66,6 @@ var app = new Vue({
 		weapon2: null,
 		clearable: 'clearable',
 		data: weaponsData,
-		balanceModSource: balanceModSource,
-		balanceMod: false,
 		manning: false,
 	},
 	computed: {
@@ -109,7 +83,7 @@ var app = new Vue({
 				return null
 			}
 			var levels = this.weapon1.split('.')
-			return this.bonus * this.source[levels[0]][levels[1]]
+			return this.bonus * this.data[levels[0]][levels[1]]
 		},
 		tilesBeforeFiring2() {
 			return this.tiles(this.cooldown2)
@@ -122,26 +96,13 @@ var app = new Vue({
 				return null
 			}
 			var levels = this.weapon2.split('.')
-			return this.bonus * this.source[levels[0]][levels[1]]
-		},
-		source() {
-			return this.balanceMod ? this.balanceModData : this.data
+			return this.bonus * this.data[levels[0]][levels[1]]
 		},
 		bonus() {
 			return this.manning ? 0.9 : 1
 		},
-		balanceModData() {
-			result = {}
-			entries = Object.entries(this.data)
-			for(let i=0; i<entries.length; i++) {
-				result[entries[i][0]] = this.mergeBalanceMod(
-					entries[i][0], entries[i][1]
-				)
-			}
-			return result
-		},
 		options() {
-			let weapons = Object.entries(this.source)
+			let weapons = Object.entries(this.data)
 			const result = []
 
 			for (const [category, items] of weapons) {
@@ -166,7 +127,7 @@ var app = new Vue({
 	},
 	methods: {
 		tiles(time) {
-			distance = time * 2.2
+			distance = time / secondsPerTile
 			return Math.round(distance * 10) / 10
 		},
 
@@ -174,12 +135,5 @@ var app = new Vue({
 			name = name.replace(/_/gi, ' ')
 			return name.charAt(0).toUpperCase() + name.slice(1);
 		},
-		mergeBalanceMod(weaponClass, weapons) {
-			if(!(weaponClass in this.balanceModSource)) {
-				return weapons
-			}
-			balanceMod = this.balanceModSource[weaponClass]
-			return {...weapons, ...balanceMod }
-		}
 	}
 })
