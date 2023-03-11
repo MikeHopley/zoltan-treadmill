@@ -8,8 +8,6 @@ html {
 /* 
 	https://twitter.com/heydonworks/status/1084856193795919874
 */
-
-a { color: white !important; }
 body {
 	padding: 1em;
 	max-width: 60em;
@@ -45,7 +43,10 @@ body {
 }
 
 .result p {
-	font-size: 1.2em;
+	font-size: 1em;
+}
+.result span {
+	font-size: 1.7em;
 }
 .reset {
 	background: #333;
