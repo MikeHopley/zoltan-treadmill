@@ -1,4 +1,4 @@
-const secondsPerTile = 0.45
+const tilesPerSecond = 2.2
 
 const sensorsDashTiles = 5.4142
 
@@ -127,7 +127,7 @@ var app = new Vue({
 	},
 	methods: {
 		tiles(time) {
-			distance = time / secondsPerTile
+			distance = time * tilesPerSecond
 			return Math.round(distance * 10) / 10
 		},
 
