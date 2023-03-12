@@ -40,7 +40,6 @@ const weaponsData = {
 		artemis_missile: 10,
 		hermes_missile: 14,
 		breach_missile: 22,
-		swarm_missile: 7
 	},
 	bombs: {
 		small_bomb: 13,
